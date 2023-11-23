@@ -1,0 +1,49 @@
+import random
+
+
+def generate_question():
+    # Generate random numbers from 1 to 99
+    num1 = random.randint(1, 99)
+    num2 = random.randint(1, 99)
+
+    # Generate a random operator
+    operator = random.choice(['+', '-', 'x', '/'])
+
+    # Formulate the question
+    question = f"What is {num1} {operator} {num2}?"
+
+    # Calculate the answer
+    if operator == '+':
+        answer = num1 + num2
+    elif operator == '-':
+        answer = num1 - num2
+    elif operator == 'x':
+        answer = num1 * num2
+    elif operator == '/':
+        # Ensure division results in integer or float based on the values
+        if num1 % num2 == 0:
+            answer = num1 // num2  # Integer division if it divides evenly
+        else:
+            answer = num1 / num2  # Float division if there's a remainder
+
+    return question, answer
+
+
+def main():
+    print("Welcome! Let's practice some arithmetic operations.")
+    for _ in range(4):  # Generate four questions
+        question, answer = generate_question()
+        print(question)
+
+        # Prompt user for input and check the answer
+        user_answer = input("Enter your answer: ")
+        user_answer = int(user_answer) if user_answer.isdigit() else float(user_answer)
+
+        if user_answer == answer:
+            print("Correct!")
+        else:
+            print(f"Wrong! The correct answer is {answer}.")
+
+
+if main() == "_main_":
+    main()
